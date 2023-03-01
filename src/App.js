@@ -1,40 +1,21 @@
-import { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
 import "./App.css";
-import { DTable } from "./component/DTable";
-import { MyForm } from "./component/MyForm";
-
+import { Login } from "./pages/Login";
+import { Dashboard } from "./pages/Dashboard";
+import { ForgetPassword } from "./pages/ForgetPassword";
+import { Registration } from "./pages/Registration";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 function App() {
-  const [list, setList] = useState([]);
-
-  const addTransaction = (data) => {
-    console.log(data);
-    setList([...list, data]);
-  };
-
-  const handleOnDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete?")) {
-      const tempArg = list.filter((itme, i) => i !== id);
-      setList(tempArg);
-    }
-  };
-
   return (
     <div className="">
-      <Container>
-        <Row>
-          <Col>
-            <h2 className="text-center mt-5 title">Finance Tracker</h2>
-          </Col>
-        </Row>
-        <hr />
-
-        {/* form */}
-        <MyForm addTransaction={addTransaction} />
-        {/* table */}
-
-        <DTable list={list} handleOnDelete={handleOnDelete} />
-      </Container>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="forgetpassword" element={<ForgetPassword />} />
+          <Route path="register" element={<Registration />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

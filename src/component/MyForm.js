@@ -4,8 +4,14 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
+const intialData = {
+  type: "",
+  title: "",
+  date: "",
+  amount: "",
+};
 export const MyForm = ({ addTransaction }) => {
-  const [formDt, setFormDt] = useState({});
+  const [formDt, setFormDt] = useState(intialData);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -20,6 +26,7 @@ export const MyForm = ({ addTransaction }) => {
     e.preventDefault();
 
     addTransaction(formDt);
+    setFormDt(intialData);
   };
 
   return (
